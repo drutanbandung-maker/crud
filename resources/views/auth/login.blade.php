@@ -51,8 +51,12 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <a href="{{ route('register') }}" class="text-decoration-none">Belum punya akun? Daftar</a>
+                    <a href="{{ route('password.forgot') }}" class="text-decoration-none">Lupa password?</a>
                     <button type="submit" class="btn btn-primary btn-submit" data-loading-text="Masuk...">Masuk</button>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a href="{{ route('register') }}" class="text-decoration-none">Belum punya akun? Daftar</a>
                 </div>
             </form>
         </div>
