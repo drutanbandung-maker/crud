@@ -34,10 +34,12 @@ Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('
 
 // protect product routes with auth
 Route::middleware('auth')->group(function(){
+    Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('products', ProductController::class);
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::post('profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::post('profile', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
+    Route::get('wallet', [\App\Http\Controllers\WalletController::class, 'show'])->name('wallet.show');
 });
 
 /*
@@ -52,5 +54,5 @@ Route::middleware('auth')->group(function(){
 */
 
 Route::get('/', function () {
-    return auth()->check() ? redirect()->route('products.index') : redirect()->route('login');
+    return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
 });

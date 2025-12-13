@@ -14,12 +14,20 @@
             <a class="navbar-brand" href="#">CRUD Laravel</a>
             <div class="ms-auto">
                 @if(auth()->check())
+                    <div class="d-inline me-2 align-middle text-end">
+                        @php $wallet = auth()->user()->wallet ?? null; @endphp
+                        <a href="{{ route('wallet.show') }}" class="btn btn-sm btn-outline-success">
+                            Coins: <span class="badge bg-warning text-dark">{{ $wallet ? $wallet->coins : 0 }}</span>
+                        </a>
+                    </div>
                     <div class="dropdown d-inline">
                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ auth()->user()->name }}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('wallet.show') }}">Wallet</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" style="display:inline;">
